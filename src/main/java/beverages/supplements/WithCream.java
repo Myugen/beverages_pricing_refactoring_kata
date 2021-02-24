@@ -1,4 +1,4 @@
-package beverages.suplements;
+package beverages.supplements;
 
 import beverages.Beverage;
 
