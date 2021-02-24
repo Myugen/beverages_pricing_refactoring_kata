@@ -1,5 +1,8 @@
 package coffee_shop;
 
+import coffee_shop.makers.CoffeeMaker;
+import coffee_shop.makers.HotChocolateMaker;
+import coffee_shop.makers.TeaMaker;
 import coffee_shop.menu.beverages.Beverage;
 import coffee_shop.menu.beverages.Coffee;
 import coffee_shop.menu.beverages.HotChocolate;
@@ -8,88 +11,46 @@ import coffee_shop.menu.supplements.WithCinnamon;
 import coffee_shop.menu.supplements.WithCream;
 import coffee_shop.menu.supplements.WithMilk;
 
-public class BeverageMachine {
+public class BeverageMachine implements CoffeeMaker, TeaMaker, HotChocolateMaker {
 
-    public static CoffeeBuilder coffee() {
-        return new CoffeeBuilder();
+    public static CoffeeMaker coffee() {
+        return new BeverageMachine(new Coffee());
     }
 
-    public static TeaBuilder tea() {
-        return new TeaBuilder();
+    public static TeaMaker tea() {
+        return new BeverageMachine(new Tea());
     }
 
-    public static HotChocolateBuilder hotChocolate() {
-        return new HotChocolateBuilder();
+    public static HotChocolateMaker hotChocolate() {
+        return new BeverageMachine(new HotChocolate());
     }
 
-    public static class CoffeeBuilder {
-        private Beverage beverage;
+    private Beverage beverage;
 
-        private CoffeeBuilder() {
-            this.beverage = new Coffee();
-        }
-
-        public Beverage make() {
-            return beverage;
-        }
-
-        public CoffeeBuilder withMilk() {
-            beverage = new WithMilk(beverage);
-            return this;
-        }
-
-        public CoffeeBuilder withCinnamon() {
-            beverage = new WithCinnamon(beverage);
-            return this;
-        }
-
-        public CoffeeBuilder withCream() {
-            beverage = new WithCream(beverage);
-            return this;
-        }
+    public BeverageMachine(Beverage beverage) {
+        this.beverage = beverage;
     }
 
-    public static class TeaBuilder {
-        private Beverage beverage;
-
-        private TeaBuilder() {
-            this.beverage = new Tea();
-        }
-
-        public Beverage make() {
-            return beverage;
-        }
-
-        public TeaBuilder withMilk() {
-            beverage = new WithMilk(beverage);
-            return this;
-        }
-
-        public TeaBuilder withCinnamon() {
-            beverage = new WithCinnamon(beverage);
-            return this;
-        }
+    @Override
+    public Beverage make() {
+        return beverage;
     }
 
-    public static class HotChocolateBuilder {
-        private Beverage beverage;
+    @Override
+    public BeverageMachine withMilk() {
+        beverage = new WithMilk(beverage);
+        return this;
+    }
 
-        private HotChocolateBuilder() {
-            this.beverage = new HotChocolate();
-        }
+    @Override
+    public BeverageMachine withCream() {
+        beverage = new WithCream(beverage);
+        return this;
+    }
 
-        public Beverage make() {
-            return beverage;
-        }
-
-        public HotChocolateBuilder withCinnamon() {
-            beverage = new WithCinnamon(beverage);
-            return this;
-        }
-
-        public HotChocolateBuilder withCream() {
-            beverage = new WithCream(beverage);
-            return this;
-        }
+    @Override
+    public BeverageMachine withCinnamon() {
+        beverage = new WithCinnamon(beverage);
+        return this;
     }
 }
