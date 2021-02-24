@@ -1,4 +1,4 @@
-package beverages;
+package coffee_shop.menu.beverages;
 
 public class HotChocolate implements Beverage {
     @Override

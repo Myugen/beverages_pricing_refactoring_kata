@@ -1,9 +1,9 @@
 package unit_tests;
 
-import beverages.*;
-import beverages.supplements.WithCinnamon;
-import beverages.supplements.WithCream;
-import beverages.supplements.WithMilk;
+import coffee_shop.menu.beverages.*;
+import coffee_shop.menu.supplements.WithCinnamon;
+import coffee_shop.menu.supplements.WithCream;
+import coffee_shop.menu.supplements.WithMilk;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
