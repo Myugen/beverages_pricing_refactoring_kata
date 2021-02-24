@@ -1,6 +1,7 @@
 package unit_tests;
 
 import beverages.*;
+import beverages.suplements.WithCinnamon;
 import beverages.suplements.WithCream;
 import beverages.suplements.WithMilk;
 import org.junit.Test;
@@ -32,9 +33,27 @@ public class BeveragesPricingTest {
     }
 
     @Test
+    public void computes_tea_with_cinnamon_price() {
+        Beverage teaWithCinnamon = new WithCinnamon(new Tea());
+        assertThat(teaWithCinnamon.price(), is(closeTo(1.55, PRECISION)));
+    }
+
+    @Test
     public void computes_tea_with_milk_price() {
         Beverage teaWithMilk = new WithMilk(new Tea());
         assertThat(teaWithMilk.price(), is(closeTo(1.60, PRECISION)));
+    }
+
+    @Test
+    public void computes_tea_with_milk_and_cinnamon_price() {
+        Beverage teaWithMilkAndCinnamon = new WithCinnamon(new WithMilk(new Tea()));
+        assertThat(teaWithMilkAndCinnamon.price(), is(closeTo(1.65, PRECISION)));
+    }
+
+    @Test
+    public void computes_coffee_with_cinnamon_price() {
+        Beverage coffeeWithCinnamon = new WithCinnamon(new Coffee());
+        assertThat(coffeeWithCinnamon.price(), is(closeTo(1.25, PRECISION)));
     }
 
     @Test
@@ -44,14 +63,38 @@ public class BeveragesPricingTest {
     }
 
     @Test
+    public void computes_coffee_with_milk_and_cinnamon_price() {
+        Beverage coffeeWithMilkAndCinnamon = new WithCinnamon(new WithMilk(new Coffee()));
+        assertThat(coffeeWithMilkAndCinnamon.price(), is(closeTo(1.35, PRECISION)));
+    }
+
+    @Test
     public void computes_coffee_with_milk_and_cream_price() {
         Beverage coffeeWithMilkAndCream = new WithCream(new WithMilk(new Coffee()));
         assertThat(coffeeWithMilkAndCream.price(), is(closeTo(1.45, PRECISION)));
     }
 
     @Test
+    public void computes_coffee_with_milk_and_cream_and_cinnamon_price() {
+        Beverage coffeeWithMilkAndCreamAndCinnamon = new WithCinnamon(new WithCream(new WithMilk(new Coffee())));
+        assertThat(coffeeWithMilkAndCreamAndCinnamon.price(), is(closeTo(1.5, PRECISION)));
+    }
+
+    @Test
+    public void computes_hot_chocolate_with_cinnamon_price() {
+        Beverage hotChocolateWithCinnamon = new WithCinnamon(new HotChocolate());
+        assertThat(hotChocolateWithCinnamon.price(),  is(closeTo(1.5, PRECISION)));
+    }
+
+    @Test
     public void computes_hot_chocolate_with_cream_price() {
         Beverage hotChocolateWithCream = new WithCream(new HotChocolate());
         assertThat(hotChocolateWithCream.price(),  is(closeTo(1.60, PRECISION)));
+    }
+
+    @Test
+    public void computes_hot_chocolate_with_cream_and_cinnamon_price() {
+        Beverage hotChocolateWithCreamAndCinnamon = new WithCinnamon(new WithCream(new HotChocolate()));
+        assertThat(hotChocolateWithCreamAndCinnamon.price(),  is(closeTo(1.65, PRECISION)));
     }
 }
