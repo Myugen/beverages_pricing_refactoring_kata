@@ -10,22 +10,22 @@ import coffee_shop.menu.supplements.WithMilk;
 
 public class BeverageMachine {
 
-    public static CoffeeBuilder coffee() {
-        return new CoffeeBuilder();
+    public static CoffeeMaker coffee() {
+        return new CoffeeMaker();
     }
 
-    public static TeaBuilder tea() {
-        return new TeaBuilder();
+    public static TeaMaker tea() {
+        return new TeaMaker();
     }
 
-    public static HotChocolateBuilder hotChocolate() {
-        return new HotChocolateBuilder();
+    public static HotChocolateMaker hotChocolate() {
+        return new HotChocolateMaker();
     }
 
-    public static class CoffeeBuilder {
+    public static class CoffeeMaker {
         private Beverage beverage;
 
-        private CoffeeBuilder() {
+        private CoffeeMaker() {
             this.beverage = new Coffee();
         }
 
@@ -33,26 +33,26 @@ public class BeverageMachine {
             return beverage;
         }
 
-        public CoffeeBuilder withMilk() {
+        public CoffeeMaker withMilk() {
             beverage = new WithMilk(beverage);
             return this;
         }
 
-        public CoffeeBuilder withCinnamon() {
+        public CoffeeMaker withCinnamon() {
             beverage = new WithCinnamon(beverage);
             return this;
         }
 
-        public CoffeeBuilder withCream() {
+        public CoffeeMaker withCream() {
             beverage = new WithCream(beverage);
             return this;
         }
     }
 
-    public static class TeaBuilder {
+    public static class TeaMaker {
         private Beverage beverage;
 
-        private TeaBuilder() {
+        private TeaMaker() {
             this.beverage = new Tea();
         }
 
@@ -60,21 +60,21 @@ public class BeverageMachine {
             return beverage;
         }
 
-        public TeaBuilder withMilk() {
+        public TeaMaker withMilk() {
             beverage = new WithMilk(beverage);
             return this;
         }
 
-        public TeaBuilder withCinnamon() {
+        public TeaMaker withCinnamon() {
             beverage = new WithCinnamon(beverage);
             return this;
         }
     }
 
-    public static class HotChocolateBuilder {
+    public static class HotChocolateMaker {
         private Beverage beverage;
 
-        private HotChocolateBuilder() {
+        private HotChocolateMaker() {
             this.beverage = new HotChocolate();
         }
 
@@ -82,12 +82,12 @@ public class BeverageMachine {
             return beverage;
         }
 
-        public HotChocolateBuilder withCinnamon() {
+        public HotChocolateMaker withCinnamon() {
             beverage = new WithCinnamon(beverage);
             return this;
         }
 
-        public HotChocolateBuilder withCream() {
+        public HotChocolateMaker withCream() {
             beverage = new WithCream(beverage);
             return this;
         }
